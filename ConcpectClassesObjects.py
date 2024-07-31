@@ -1,4 +1,24 @@
+class User:
+    __instance = None
+
+    def __new__(cls, *args, **kwargs):
+        print('Im in new')
+        if cls.__instance is None:
+            cls.__instance = super().__new__(cls)
+        return cls.__instance
+
+    def __init__(self, *args, **kwargs):
+        print('I user')
+        self.args = args
+        # self.name = kwargs.get('name')
+        # self.age = kwargs.get('age')
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+
 class Human:
+    head = True
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -11,26 +31,43 @@ class Human:
     def birthday(self):
         self.age += 1
         print(f'У меня день рождения!!! Мне теперь {self.age}')
+
     def __str__(self):
         return self.name
+
     def __len__(self):
         return self.age
+
     def __lt__(self, other):
         return self.age < other.age
+
     def __gt__(self, other):
         return self.age > other.age
+
     def __eq__(self, other):
         return self.age == other.age or self.name == other.name
+
     def __bool__(self):
         return bool(self.age)
+
     def __del__(self):
         print(f'{self.name} ушел')
 
+
+other = [1, 2, 3]
+user = {'name': 'Den', 'age': 25, 'gender': 'male'}
+print(int.__mro__)
+print(object.__mro__)
 den = Human('Денчик', 23)
 max = Human('Максон', 35)
-den.surname = "Попов"
-den.birthday()
-max.birthday()
+# den.surname = "Попов"
+# den.birthday()
+# max.birthday()
+user1 = User(*other, **user)
+print(user1.args)
+print(user1.name)
+print(user1.age)
+print(user1.gender)
 # print(id(den), den.name, den.age, den.surname)
 # print(id(max), max.name, max.age)
 # if den:
