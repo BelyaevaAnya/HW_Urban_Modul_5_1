@@ -12,13 +12,21 @@ class Human:
         self.age += 1
         print(f'У меня день рождения!!! Мне теперь {self.age}')
 
+    def __len__(self):
+        return self.age
+    
+    def __del__(self):
+        print(f'{self.name} ушел')
 
 den = Human('Денчик', 23)
 max = Human('Максон', 35)
 den.surname = "Попов"
 den.birthday()
 max.birthday()
+print(id(den), den.name, den.age, den.surname)
+
+del den
+print(len(max))
 # den.say_info()
 # max.say_info()
-print(id(den), den.name, den.age, den.surname)
 print(id(max), max.name, max.age)
