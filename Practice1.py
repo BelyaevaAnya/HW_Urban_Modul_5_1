@@ -20,7 +20,6 @@ class User:
     # и если пароль содержит цифры
 
 
-
 if __name__ == '__main__':
     database = Database()
     while True:
